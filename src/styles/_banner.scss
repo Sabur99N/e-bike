@@ -1,0 +1,324 @@
+.banner-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 20px;
+
+  // Soft animated glow behind the hero for a living, ambient feel.
+  &::before {
+    content: '';
+    position: absolute;
+    top: -18%;
+    right: -8%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 900px;
+    max-height: 900px;
+    background: radial-gradient(
+      circle,
+      rgba(219, 219, 219, 0.6),
+      rgba(219, 219, 219, 0) 65%
+    );
+    z-index: 0;
+    animation: glow-drift 12s ease-in-out infinite alternate;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@keyframes glow-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-5%, 5%) scale(1.1);
+  }
+}
+
+.banner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+// Headline: "LET'S RIDE!" with a masked, per-letter reveal.
+.h2-container {
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+
+.headline {
+  text-transform: uppercase;
+
+  span {
+    display: inline-block;
+    will-change: transform;
+  }
+}
+
+.title {
+  margin: 34px 0 90px;
+  text-transform: uppercase;
+  font-family: 'Saira Stencil One', 'Ubuntu', sans-serif;
+  color: var(--black-color);
+}
+
+.line {
+  width: 100%;
+  max-width: 354px;
+  height: 4px;
+  background-color: var(--black-color);
+  transform-origin: left center;
+}
+
+.subtitle {
+  margin: 27px 0 29px;
+  max-width: 354px;
+}
+
+.description-section {
+  max-width: 354px;
+}
+
+.choose-color {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.swatch {
+  position: relative;
+  width: 65px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--text-color);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 2px 3px 11px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.25s var(--ease-out),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+
+    img {
+      transform: scale(1.12);
+    }
+  }
+
+  &.is-active {
+    border-color: var(--black-color);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--ring-color);
+    outline-offset: 3px;
+  }
+}
+
+.buy-now-part {
+  margin-top: 33px;
+}
+
+.buy-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  border: none;
+  background: transparent;
+  color: var(--black-color);
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px 20px;
+    background-color: var(--text-color);
+    transition:
+      background-color 0.3s ease,
+      transform 0.3s var(--ease-out);
+  }
+
+  &:hover {
+    .buy-now__icon {
+      background-color: var(--black-color);
+      transform: translateX(4px);
+    }
+
+    .buy-now__label h3 {
+      transform: translateX(4px);
+    }
+  }
+
+  &__label h3 {
+    transition: transform 0.3s var(--ease-out);
+  }
+}
+
+.banner-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 80px;
+    width: 65%;
+    height: 65%;
+    z-index: -1;
+    background: url(../assets/images/banner-right-bg.svg) no-repeat center /
+      cover;
+  }
+}
+
+.bike-parallax {
+  width: 100%;
+}
+
+.bike-float {
+  will-change: transform;
+
+  img {
+    width: 100%;
+    max-width: 848px;
+    aspect-ratio: 1.07 / 1;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+}
+
+.features-section {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin: 52px 0 57px;
+}
+
+.features-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  min-height: 120px;
+  padding: 18px 24px;
+  border-radius: 5px;
+  color: var(--text-color);
+  background-color: var(--white-color);
+  box-shadow: var(--card-shadow);
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.4s ease,
+    color 0.4s ease,
+    box-shadow 0.4s ease;
+
+  &__value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+
+    span {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  p {
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    color: var(--white-color);
+    background-color: var(--text-color);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  }
+}
+
+// Responsive
+@media screen and (max-width: 1199px) {
+  .banner-section {
+    padding-top: 30px;
+  }
+  .title {
+    margin: 20px 0 48px;
+  }
+  .features-section {
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .banner-right {
+    order: -1;
+  }
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .title {
+    margin: 16px 0 32px;
+  }
+  .line {
+    margin-inline: auto;
+  }
+  .description-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .buy-now-part {
+    display: flex;
+    justify-content: center;
+  }
+  .features-section {
+    margin: 8px 0 40px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .choose-color {
+    gap: 12px;
+  }
+  .swatch {
+    width: 56px;
+  }
+}
